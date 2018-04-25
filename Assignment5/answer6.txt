@@ -1,0 +1,14 @@
+
+
+
+The evolution of automatas in the game of life follows 4 simple rules (using Moore neighborhod):
+
+
+1) A cell with less than 2 neighbours( meaning that the environment is underpopulated) dies
+2) A cell with more than 3 neighbours ( meaning that the environment is overpopulated) dies
+3) A cell with 3 neoghbours continues to live
+4) A dead cell ( or an empty space) with exacty 3 neighbours comes back to live (or the empty space becomes populated)
+
+Depending on the initial configuration of the game board, there are many possible emergent behaviour of the population of cells. If the game board is initiated with the so called Small Exploder,after 19 iteration, the game reaches an equilibrium. This is just a mechanical outcome of the rules with this specific initial configuration. 
+We can say that the final reason why the game reaches an equilibirum is that the population transforms itself from the small exploder to a stable pattern (in 4 different position) which is called the BeeHive. 
+In the BeeHive the 4 rules are all already satisfied for each cell and there isn't any possibility of evolution.
