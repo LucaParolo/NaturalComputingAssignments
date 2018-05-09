@@ -5,6 +5,9 @@ __pycache__/
 
 .DS_Store
 NC_Simge/
+Assignment6/data
+Assignment6/liblinear-2.20
+Assignment6/src
 
 # C extensions
 *.so
