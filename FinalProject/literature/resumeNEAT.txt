@@ -1,0 +1,47 @@
+Resume Paper stanley (NEAT)
+
+A)Genetic encoding: two type of genes in the genome. Connection genes that encodes the connection between the neurons in the NN and node genes that encode the number and type of neurons. 
+Connetion genes have the following info: input neuron,output neuron, weight of the conncetion, enabled/disabled, innovation numbe which allows finding corresponding genes during crossover
+NOde genes have the following info: node number and type (input/hidden/output)
+
+Neat can  evolve networks with any number of input and/or output units
+
+Mutation in NEAT can change both connection weights and network structure
+Connection weights mutation works as always
+Structural mutations, which expand the genome, occur in 2 ways:ADD CONNECTION mutation new connection between 2 previuously unconnected neurons, ADD NODE mutation, existing connection is split and a new node is placed where the old connection used to be, the old connection is disabled and two new connections are added (from node--->node to node-->node-->node)
+
+
+B) Tracking genes through historical markings 
+
+Performing crossover -->the system must be able to tell which genes match up between any individuals in the population. " genes that have the same historical origin represent the same structure (with possibly different weights) since they were both derived from the same ancestral gene in the past
+Genes that do not match up are either disjoint or excess depending on wether they occur within or outside the range of the other parent's innovation number. 
+
+C) Protecting innovation through speciation
+Adding new structure to a network usually initially reduces fitness. but NEAT speciates the population-->this means that individuals compete first in their own niche instead of the population at large.
+Historical markings make it possible for the system to divide the population based on topological similarity (number of disjoint or excess is a measure of compatibility between pairs of genomes). So compatibility can be measured as a simple linear combination of the number of excess and disjoint and the average weight differences of mathcing genes. In the formula there are also 3 coefficients c1,c2,c3 that adjust the importance of the 3 factors and the factor N which is the number of genes in the larger genome-->formula gives the distnce measure delta that let us speciate using a compatibility tresholding.
+
+speciation prevents bloating of genomes: Species with smaller genomes survive as long as their fitness is competitive, ensuring that small networks are not replaced by larger ones unnecessarily
+
+Reproduction mechanism for NEAT we use explicit fitness sharing that means that organisms of the same species share the fitness of their niche(preventing one species to take over the population). Original fitnesses are first divided by the number of individuals in the species. Species then grow or shrink dependng on whether their average adjusted fitness is below or above the population average
+
+D) Minimizing dimensionality
+TWEANN starts from an initial population of random topologies-->this topological diversity must be introduced from the start. There is no way to prove if and how much this diversity is necessary at the beginning. So effort may be wasted by optimizign unnecessary complex struvture. NEAT however begins with an uniform population of networks with no hidden units-->this can be done as NEAT protects innovation usign speciation.New structures are introduced incrementally when structural mutation occurs and survive only those structure which have good fitness performance. In this way NEAT minimizes the search and it's faster. 
+
+
+
+
+
+
+
+
+TODO:
+
+-understand and develop the algorithm
+-find a suitable environment and understand how it works, what language etc
+-find a suitable challenge to solve (openAI gym has some), which game can be applied the algo to(this is related to the environment)
+- understand how the succesful genome can be used in a different environment. This means experiment what's the agent performance in a slightly or very different environment, and come up with possible way to improve the adaptation of the agent in the algo developing phase ( or changing parameters e.g. fitness function)
+
+
+
+
+https://unitylist.com/p/9wt/Evolutionary-Neural-Networks-on-Unity-for-bots
