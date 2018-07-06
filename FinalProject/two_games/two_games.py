@@ -6,7 +6,7 @@ from neat import nn, population, statistics, parallel
 from scipy.spatial import distance
 from math import sqrt
 import pickle
-import visualize
+
 
 
 class learn_game:

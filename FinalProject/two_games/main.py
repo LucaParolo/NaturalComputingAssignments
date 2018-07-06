@@ -1,6 +1,6 @@
 import two_games
 import gym
-import visualize
+
 import winner
 
 first_name="SpaceInvaders-ram-v0"
