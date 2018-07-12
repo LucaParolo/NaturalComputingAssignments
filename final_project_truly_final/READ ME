@@ -1,0 +1,11 @@
+READ ME
+
+
+This is the code we have used for the project.
+In each separate folder there is the program we used to evolve the agents as 
+well as the results and the configuration file that Neat needs.
+
+ We have also included the notebook 
+we used to work with the data. The final_test folder contains a program
+to run the winner of each scenarios and to normalized the data.
+

@@ -19,8 +19,8 @@ activation_functions = sigmoid
 weight_stdev         = 1.0
 
 [genetic]
-pop_size                = 10
-max_fitness_threshold   = 6000
+pop_size                = 150
+max_fitness_threshold   = 10000
 prob_add_conn = 0.988
 prob_add_node = 0.25
 prob_delete_conn = 0.146

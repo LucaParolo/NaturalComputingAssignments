@@ -1,0 +1,10 @@
+
+
+to_do:
+
+-1 : train 2 games for 200 gens
+-2 : test winner on first game and winner on second game 
+
+-3 : train first game and second game separately for 200 gens
+-4 : test second game on winner first game, test first game on winner second game 
+

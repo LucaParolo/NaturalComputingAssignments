@@ -1,0 +1,1 @@
+Mean scores for game SpaceInvaders-ram-v0 and trained on winner_both.pkl: -524.6878606965174 with MAX=1005.0Mean scores for game DemonAttack-ram-v0 and trained on winner_both.pkl: 0.6563636363636364 with MAX=1280.0Mean scores for game SpaceInvaders-ram-v0 and trained on winner_both.pkl: 0.6454166666666665 with MAX=1005.0

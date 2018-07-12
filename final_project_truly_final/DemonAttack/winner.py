@@ -7,10 +7,10 @@ import pickle
 
 
 
-def run(first_game,second_game):
+def run(first_game):
 
 
-    def simulate_species(net, env, episodes=1, steps=5000, render=False):
+    def simulate_species(net, env, episodes, steps, render):
         fitnesses = []
       
         for runs in range(episodes):
@@ -37,17 +37,12 @@ def run(first_game,second_game):
         return fitness
 
 
-    to_choose=("Please enter 1 if you want to test ",first_game," or 2 if you want to test ",second_game)
 
-    choice=input(to_choose)
 
-    if choice==1:
 
-        my_env = gym.make(first_game)
+    my_env = gym.make(first_game)
 
-    else:
 
-        my_env = gym.make(second_game)
 
     file = open('winner.pkl', 'rb')
     winner=pickle.load(file)
@@ -58,7 +53,7 @@ def run(first_game,second_game):
 
     winner_net = nn.create_feed_forward_phenotype(winner)
     for i in range(100):
-        simulate_species(winner_net,my_env, 1, 1000, render=True)
+        simulate_species(winner_net,my_env, 1, 10000, True)
 
 
 
