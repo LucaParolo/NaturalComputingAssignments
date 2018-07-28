@@ -13,7 +13,7 @@ class learn_game:
 
 
 	
-	max_steps=10000
+	max_steps=50000
 	episodes=1
 	render=False
 	generations=1
@@ -100,18 +100,3 @@ class learn_game:
 		import pickle
 		with open('winner.pkl', 'wb') as output:
 			pickle.dump(winner, output, 1)
-
-		#visualize.draw_net("config.txt", winner, view=False, node_names=None, filename=self.game_name + "net")
-		'''
-		print('\nBest genome:\n{!s}'.format(winner))
-		print('\nOutput:')
-
-		input("Press Enter to run the best genome...")
-		winner_net = nn.create_feed_forward_phenotype(winner)
-		for i in range(100):
-			simulate_species(winner_net, env, 1, args.max_steps, render=True)
-	'''
-	#my_env = gym.make(game_name)
-	#print ("Input Nodes: %s" % str(len(my_env.observation_space.high)))
-	#print ("Output Nodes: %s" % str(my_env.action_space.n))
-	#train_network(my_env)

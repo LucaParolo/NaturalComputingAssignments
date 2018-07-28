@@ -11,7 +11,8 @@ import csv
 #game_name=input("File name of the game to test ")
 
 
-winner="winner_both.pkl"
+
+winner="winner_SpaceInvaders.pkl"
 game_name="SpaceInvaders-ram-v0"
 my_env=gym.make(game_name)
 
@@ -31,10 +32,14 @@ def simulate_species(scores,net, env, episodes, steps, render):
 				
 				inputs, reward, done, _ = env.step(action)
 				
+				
 				if render:
 					env.render()
 				if done:
 					break
+				if reward>0:
+					reward=1	
+				
 				cum_reward += reward
 
 			fitnesses.append(cum_reward)
@@ -48,7 +53,7 @@ def simulate_species(scores,net, env, episodes, steps, render):
 
 
 
-with open("winner_both.pkl",'rb') as pickle_file:
+with open(winner,'rb') as pickle_file:
 	winner_a=pickle.load(pickle_file)
 
 
@@ -60,11 +65,15 @@ for i in range(100):
 	simulate_species(scores,winner_net,my_env, 1, 50000, False)
 
 
-final_score=(np.mean(scores)-np.min(scores))/(np.max(scores)-np.min(scores))
+
+
+#final_score=(np.mean(scores)-np.min(scores))/(np.max(scores)-np.min(scores))
+final_score=np.sum(scores)
+
 
 mx=np.max(scores)
 with open('one.txt', 'a') as the_file:
-    the_file.write('Mean scores for game {0} and trained on {1}: {2} with MAX={3}'.format(game_name,winner, final_score,mx))
+	the_file.write('Mean scores for game {0} and trained on {1}: {2} with MAX={3}  '.format(game_name,winner, final_score,mx))
 
 
 

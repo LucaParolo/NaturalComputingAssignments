@@ -13,7 +13,7 @@ class learn_game:
 
 
 	
-	max_steps=10000
+	max_steps=50000
 	episodes=1
 	render=False
 	generations=1
@@ -100,6 +100,3 @@ class learn_game:
 		import pickle
 		with open('winner.pkl', 'wb') as output:
 			pickle.dump(winner, output, 1)
-
-	
-	
