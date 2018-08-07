@@ -18,7 +18,7 @@ class learn_game:
 	render=False
 	generations=1
 	checkpoint=None
-	num_cores=1
+	
 
 	def __init__(self,game_name,render):
 
@@ -53,11 +53,6 @@ class learn_game:
 	
 	
 
-	
-	def worker_evaluate_genome(self,g):
-		net = nn.create_feed_forward_phenotype(g)
-		return self.simulate_species(net, self.my_env, self.episodes, self.max_steps, self.render)
-
 
 	def evaluate_genome(self,g):
 		net = nn.create_feed_forward_phenotype(g)
@@ -81,7 +76,6 @@ class learn_game:
 		if self.checkpoint!= None:
 			pop.load_checkpoint(self.checkpoint)
 		
-		#pe = parallel.ParallelEvaluator(args.numCores,worker_evaluate_genome)
 		pop.run(self.eval_fitness, self.generations)
 
 		pop.save_checkpoint("checkpoint")

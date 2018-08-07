@@ -13,12 +13,12 @@ class learn_game:
 
 
 	
-	max_steps=8000
+	max_steps=50000
 	episodes=1
 	render=False
 	generations=1
 	checkpoint=None
-	num_cores=1
+	
 
 	def __init__(self,game_name,render):
 
@@ -54,10 +54,6 @@ class learn_game:
 	
 
 	
-	def worker_evaluate_genome(self,g):
-		net = nn.create_feed_forward_phenotype(g)
-		return self.simulate_species(net, self.my_env, self.episodes, self.max_steps, self.render)
-
 
 	def evaluate_genome(self,g):
 		net = nn.create_feed_forward_phenotype(g)
@@ -67,6 +63,8 @@ class learn_game:
 		for g in genomes:
 			fitness = self.evaluate_genome(g)
 			g.fitness = fitness
+
+
 
 	def train_network(self,checkpoint):
 
@@ -81,7 +79,6 @@ class learn_game:
 		if self.checkpoint!= None:
 			pop.load_checkpoint(self.checkpoint)
 		
-		#pe = parallel.ParallelEvaluator(args.numCores,worker_evaluate_genome)
 		pop.run(self.eval_fitness, self.generations)
 
 		pop.save_checkpoint("checkpoint")
@@ -101,17 +98,4 @@ class learn_game:
 		with open('winner.pkl', 'wb') as output:
 			pickle.dump(winner, output, 1)
 
-		#visualize.draw_net("config.txt", winner, view=False, node_names=None, filename=self.game_name + "net")
-		'''
-		print('\nBest genome:\n{!s}'.format(winner))
-		print('\nOutput:')
-
-		input("Press Enter to run the best genome...")
-		winner_net = nn.create_feed_forward_phenotype(winner)
-		for i in range(100):
-			simulate_species(winner_net, env, 1, args.max_steps, render=True)
-	'''
-	#my_env = gym.make(game_name)
-	#print ("Input Nodes: %s" % str(len(my_env.observation_space.high)))
-	#print ("Output Nodes: %s" % str(my_env.action_space.n))
-	#train_network(my_env)
+		
