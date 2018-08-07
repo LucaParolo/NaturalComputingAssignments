@@ -1,9 +1,11 @@
+
 import gym
 import os
 import numpy as np
 from neat import nn, population, statistics, parallel
 import pickle
 import csv
+from scipy import stats
 
 
 #winner=input("File name of the winner pickle file ")
@@ -11,11 +13,15 @@ import csv
 
 
 
-winner="winner_SpaceInvaders.pkl"
-game_name="SpaceInvaders-ram-v0"
+winner_1="winner_DemonAttack.pkl"
+winner_2="winner_both.pkl"
+
+game_name="DemonAttack-ram-v0"
 my_env=gym.make(game_name)
 
-scores=[]
+scores_one=[]
+scores_two=[]
+
 
 def simulate_species(scores,net, env, episodes, steps, render):
 		fitnesses = []
@@ -52,26 +58,33 @@ def simulate_species(scores,net, env, episodes, steps, render):
 
 
 
-with open(winner,'rb') as pickle_file:
+with open(winner_1,'rb') as pickle_file:
 	winner_a=pickle.load(pickle_file)
 
+with open(winner_2,'rb') as pickle_file:
+	winner_b=pickle.load(pickle_file)
 
 
 
 
-winner_net = nn.create_feed_forward_phenotype(winner_a)
+
+winner_one = nn.create_feed_forward_phenotype(winner_a)
+winner_two = nn.create_feed_forward_phenotype(winner_b)
+
 for i in range(100):
-	simulate_species(scores,winner_net,my_env, 1, 50000, False)
+	simulate_species(scores_one,winner_one,my_env, 1, 50000, False)
+	simulate_species(scores_two,winner_two,my_env, 1, 50000, False)
+
+
+t_test=stats.ttest_rel(scores_one,scores_two)
+
+
+with open('t-test.txt', 'a') as the_file:
+	the_file.write('Paired t-test for {0} and {1} = {2} . Total scores for {0} is :{3} . Total scores for {1} is :{4}'.format(winner_1,winner_2,str(t_test),str(np.sum(scores_one)),str(np.sum(scores_two))))
 
 
 
 
-#final_score=(np.mean(scores)-np.min(scores))/(np.max(scores)-np.min(scores))
-final_score=np.sum(scores)
 
-
-mx=np.max(scores)
-with open('scores.txt', 'a') as the_file:
-	the_file.write('Mean scores for game {0} and trained on {1}: {2} with MAX={3}  '.format(game_name,winner, final_score,mx))
 
 
