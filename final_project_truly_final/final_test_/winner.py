@@ -6,13 +6,11 @@ import pickle
 import csv
 
 
-#winner=input("File name of the winner pickle file ")
-#game_name=input("File name of the game to test ")
+winner=input("File name of the winner pickle file ")
+game_name=input("File name of the game to test ")
 
 
 
-winner="winner_SpaceInvaders.pkl"
-game_name="SpaceInvaders-ram-v0"
 my_env=gym.make(game_name)
 
 scores=[]
@@ -61,11 +59,12 @@ with open(winner,'rb') as pickle_file:
 
 winner_net = nn.create_feed_forward_phenotype(winner_a)
 for i in range(100):
-	simulate_species(scores,winner_net,my_env, 1, 50000, False)
+	simulate_species(scores,winner_net,my_env, 1, 50000, True)
 
 
 
 
+## We can decide to save only the sum of the scores, or to use min max normalization
 #final_score=(np.mean(scores)-np.min(scores))/(np.max(scores)-np.min(scores))
 final_score=np.sum(scores)
 

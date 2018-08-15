@@ -1,18 +1,73 @@
 READ ME
 
 
-This is the code we have used for the project.
-
-There are 4 folders: 
-3 folders  (DemonAttack,SpaceInvaders,two_games): 
-
-each folder is separate from each other and contains all the necessary code to run the learning process,  see the winner playing the game, manipulate the resulting data to make plots.
-There are 3 csv files that containes the results of the evolution of 100 generations
 
 
 
-1 folder (final_test): 
+This is the code we have used for the project. 
 
-used to test the final nerual network and saves the results. WInner.py saves the scores, while t_test.py copmuted the t-test
+
+To run the code you need to install Neat version 0.8 and Open-AI gym.
+
+To install NEAT:
+
+pip install neat-python==0.8
+
+To install Open_AI gym and ATari:
+
+pip install gym
+
+apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python-opengl libboost-all-dev libsdl2-dev swig
+
+pip install 'gym[all]'
+
+
+The installation phase has proved to create a lot of problems to us, and the problems were very different from one machine to the other so we can't provide a standard way to solve them.Therefore we cannot guarantee that this steps will be enough.
+
+
+There are 4 folders:
  
+- 3 folders: DemonAttack,SpaceInvaders,two_games : 
+
+	Each folder is independent from each other. In each folder there is:
+
+	- config.txt : it contains all the hyperparameters that NEAT algorithm uses to run. 
+	- fitness_hsotry.csv : the saved fitness history
+	- speciation.csv : the saved number of individuals of each species at each generation
+	- species_fitness.csv : the saved fitness by species
+	- learn_game.py : the class that performs all the operation for the neuroevolution. It is called in the main.py
+	- main.py :main class for the program. Creates an instance of learn_game and run the algorithm  for 100 generations. at the end it     runs the   winner for 100 episodes
+	- winner.py : it runs the final winner. it is called in main.py
+	- PlotFitness.ipynb: the jupyter notebook we used to perform data manipulation to plot the results from the csv files
+	- winner.pkl : the file that contains all the parameters of the winning individual
+	- checkpoint: the saved parameters of the NEAT algorithm. It can be used when we want to train an agent for other generation after it was already trained. In the two_games folder, the checkpoint is called each generation to switch the evolution process from one game to the other
+
+
+
+- 1 folder: final_test: 
+	 
+	The final_test folder contains the code we used to perform the t-test and to test each agent on each game.
+	It cointains:
+
+	- scores.txt : contains the saved scores when the agents play 
+	- t.test.txt : contains the t-test results
+	- t_test.py : the code we used to perform t-test
+	- winner.py : the code we use to run the winner.
+	- winner_both.pkl,winner_DemonAttack.pkl, winner_SpaceInvaders.pkl : the saved parameters for the winner individual in each situation.
+
+
+
+To see the winner individuals play the game: 
+
+1) go to the final_test folder
+
+2) run python3 winner.py 
+
+3) Enter the name of the .pkl file of the agent. The possibilities are : "winner_both.pkl" for the multi environment agent ,"winner_DemonAttack.pkl" for the agent evolved in Demon Attack, "winner_SpaceInvaders.pkl" for the agent evolved in SpaceInvaders
+
+4) Enter the name of the game that the agent should play. The possibilities are: "SpaceInvaders-ram-v0" for Space Invaders, "DemonAttack-ram-v0" for DemonAttack
+
+
+
+
 
